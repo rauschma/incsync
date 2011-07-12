@@ -1,14 +1,7 @@
-<h1>incsync – incremental backups with rsync on Unix</h1>
+incsync – incremental backups with rsync on Unix
 
-<ul>
-    <li><b>Usage:</b> <tt>incsync.sh [timestamp]</tt>
-        <ul>
-            <li>No arguments: Perform a new backup with the current time as a timestamp.</li>
-            <li>One argument – a timestamp: Continue a previous backup.</li>
-        </ul>
-    </li>
-    <li><b>What it does:</b> Each time, it is invoked, only what has changed (since the last invocation) is backed up, in a new directory with a time stamp.</li>
-    <li><b>How it works:</b> incsync uses the open source tool <a href="http://samba.anu.edu.au/rsync/">rsync</a> for incremental backups. rsync uses Unix hard links (references to files) to do so: Before creating a new backup, one makes a complete copy of the last backup, but the copy does not contain files, only hard links to files. Then one brings the copy up to date with the source directory. Afterwards, the copy looks like a complete backup, but consumes relatively little space on disk. The kicker is that you could now delete the previous backup and the newly created directory would still contain a complete backup. The reason lies in Unix’s handling of hard links: it only deletes a file after there are no more references to it.</li>
-    <li><b>Inspiration:</b> This script has been inspired by the article “<a href="http://blog.interlinked.org/tutorials/rsync_time_machine.html">Time Machine for every Unix out there</a>”.</li>
-</ul>
-More information: <a href="http://www.2ality.com/2009/02/incremental-backups-with-rsync-on-unix.html">www.2ality.com/2009/02/incremental-backups-with-rsync-on-unix.html</a>
+Usage: incsync.sh [timestamp]
+* No arguments: Perform a new backup with the current time as a timestamp.
+* One argument – a timestamp: Continue a previous backup.
+
+Details: http://www.2ality.com/2009/02/incremental-backups-with-rsync-on-unix.html
